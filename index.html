@@ -38,6 +38,7 @@ select {
 }
 
 .card {
+  display: none; /* 🔥 ซ่อนตอนแรก */
   background: white;
   padding: 15px;
   border-radius: 12px;
@@ -77,7 +78,7 @@ select {
 <div class="header">🚑 High Alert Drug</div>
 
 <select onchange="showDrug(this.value)">
-  <option value="">-- เลือกยา --</option>
+  <option value="" disabled selected>👉 เลือกยาเพื่อแสดงข้อมูล</option>
   <option value="adrenaline">Adrenaline</option>
   <option value="levophed">Levophed</option>
   <option value="kcl">KCl</option>
@@ -85,15 +86,19 @@ select {
   <option value="ntg">NTG</option>
 </select>
 
-<div id="content" class="card">
-  👉 เลือกยาเพื่อแสดงข้อมูล
-</div>
+<div id="content" class="card"></div>
 
 </div>
 
 <script>
 function showDrug(drug) {
   let content = "";
+  const card = document.getElementById("content");
+
+  if (!drug) {
+    card.style.display = "none";
+    return;
+  }
 
   if (drug === "adrenaline") {
     content = `
@@ -157,7 +162,7 @@ function showDrug(drug) {
     content = `
     <div class="drug-name">Magnesium Sulfate (MgSO4)</div>
     <div class="section"><span class="title">1. Indication:</span><br>
-    Torsades, Eclampsia</div>
+    Torsades de point, Eclampsia</div>
 
     <div class="section"><span class="title">2. Dose:</span><br>
     1–2 g IV</div>
@@ -191,7 +196,8 @@ function showDrug(drug) {
     `;
   }
 
-  document.getElementById("content").innerHTML = content || "👉 เลือกยาเพื่อแสดงข้อมูล";
+  card.innerHTML = content;
+  card.style.display = "block"; // 🔥 แสดงเมื่อเลือกยา
 }
 </script>
 
