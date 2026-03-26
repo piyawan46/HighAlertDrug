@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Drug</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  max-width: 500px;
+  width: 100%;
+  padding: 15px;
+}
+
+.header {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #e53935;
+  margin-bottom: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section {
+  margin-bottom: 10px;
+}
+
+.title {
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+.drug-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 10px;
+}
+
+.summary {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff3e0;
+  border-radius: 10px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">🚑 Emergency Drug</div>
+
+<select onchange="showDrug(this.value)">
+  <option value="">-- เลือกยา --</option>
+  <option value="adrenaline">Adrenaline</option>
+  <option value="levophed">Levophed</option>
+  <option value="kcl">KCl</option>
+  <option value="mgso4">MgSO4</option>
+  <option value="ntg">NTG</option>
+</select>
+
+<div id="content" class="card">
+  👉 เลือกยาเพื่อแสดงข้อมูล
+</div>
+
+</div>
+
+<script>
+function showDrug(drug) {
+  let content = "";
+
+  if (drug === "adrenaline") {
+    content = `
+    <div class="drug-name">Adrenaline</div>
+    <div class="section"><span class="title">1. Indication:</span><br>
+    Cardiac arrest, Anaphylaxis</div>
+
+    <div class="section"><span class="title">2. Dose:</span><br>
+    CPR: 1 mg IV q3-5 min<br>
+    Anaphylaxis: 0.3–0.5 mg IM</div>
+
+    <div class="section"><span class="title">3. Concentration:</span><br>
+    1:1000 (IM), 1:10,000 (IV)</div>
+
+    <div class="section"><span class="title">4. Dilution:</span><br>
+    1 ml + NSS 9 ml → 1:10,000</div>
+
+    <div class="summary">⚡ CPR: 1 mg IV | Anaphylaxis: IM เท่านั้น</div>
+    `;
+  }
+
+  else if (drug === "levophed") {
+    content = `
+    <div class="drug-name">Levophed (Norepinephrine)</div>
+    <div class="section"><span class="title">1. Indication:</span><br>
+    Septic shock, Hypotension</div>
+
+    <div class="section"><span class="title">2. Dose:</span><br>
+    0.05–1 mcg/kg/min IV infusion</div>
+
+    <div class="section"><span class="title">3. Concentration:</span><br>
+    4 mg/4 ml</div>
+
+    <div class="section"><span class="title">4. Dilution:</span><br>
+    4 mg + D5W 250 ml</div>
+
+    <div class="summary">⚡ Titrate ตาม BP | ใช้ infusion เท่านั้น</div>
+    `;
+  }
+
+  else if (drug === "kcl") {
+    content = `
+    <div class="drug-name">Potassium Chloride (KCl)</div>
+    <div class="section"><span class="title">1. Indication:</span><br>
+    Hypokalemia</div>
+
+    <div class="section"><span class="title">2. Dose:</span><br>
+    10–20 mEq/hr (IV)</div>
+
+    <div class="section"><span class="title">3. Concentration:</span><br>
+    2 mEq/ml</div>
+
+    <div class="section"><span class="title">4. Dilution:</span><br>
+    ห้าม IV push ต้อง dilute ในน้ำเกลือ</div>
+
+    <div class="summary">⚡ ห้าม IV push | เสี่ยง cardiac arrest</div>
+    `;
+  }
+
+  else if (drug === "mgso4") {
+    content = `
+    <div class="drug-name">Magnesium Sulfate (MgSO4)</div>
+    <div class="section"><span class="title">1. Indication:</span><br>
+    Torsades, Eclampsia</div>
+
+    <div class="section"><span class="title">2. Dose:</span><br>
+    1–2 g IV</div>
+
+    <div class="section"><span class="title">3. Concentration:</span><br>
+    50% solution</div>
+
+    <div class="section"><span class="title">4. Dilution:</span><br>
+    ผสม NSS ก่อนให้ IV</div>
+
+    <div class="summary">⚡ ให้ช้า | monitor RR และ reflex</div>
+    `;
+  }
+
+  else if (drug === "ntg") {
+    content = `
+    <div class="drug-name">Nitroglycerin (NTG)</div>
+    <div class="section"><span class="title">1. Indication:</span><br>
+    Chest pain, ACS, HT crisis</div>
+
+    <div class="section"><span class="title">2. Dose:</span><br>
+    5–10 mcg/min IV infusion</div>
+
+    <div class="section"><span class="title">3. Concentration:</span><br>
+    50 mg/10 ml</div>
+
+    <div class="section"><span class="title">4. Dilution:</span><br>
+    ผสมใน D5W 250 ml</div>
+
+    <div class="summary">⚡ ระวัง BP drop | titrate ตามอาการ</div>
+    `;
+  }
+
+  document.getElementById("content").innerHTML = content || "👉 เลือกยาเพื่อแสดงข้อมูล";
+}
+</script>
+
+</body>
+</html>
+
